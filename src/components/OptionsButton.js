@@ -1,27 +1,29 @@
 import React from "react";
 import * as BooksAPI from "../utils/BooksAPI";
 import { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 
 const OptionsButton = ({ book, update }) => {
   const [currentShelf, setCurrentShelf] = useState("");
-  const [noneOption, setNoneOption] = useState(<></>);
 
-  const firstOptionSetter = () => {
-    return currentShelf === "none" ? "Add to..." : "Move to...";
-  };
+  //this is a state to show or hide the none button based on if the book have shelf or not
+  const [noneOption, setNoneOption] = useState(false);
 
   const updateShelf = async (shelf) => {
     await BooksAPI.update(book, shelf);
+
+    //calling tha App.js update() to notify that books has been updated
     update();
   };
 
   useEffect(() => {
+    //setting current shelf here based on book if it has one or no
     setCurrentShelf(() => {
       return book.shelf ? book.shelf : "none";
     });
-    book.shelf
-      ? setNoneOption(<option value="none">None</option>)
-      : setNoneOption(<></>);
+
+    //setting the 4th option "none" if there is a shelf on a book
+    book.shelf ? setNoneOption(true) : setNoneOption(false);
   }, [book]);
   return (
     <div className="book-shelf-changer">
@@ -32,16 +34,22 @@ const OptionsButton = ({ book, update }) => {
           updateShelf(event.target.value);
         }}
       >
+        {/* //determine which text to show based on shelf (Add to // Move to)  */}
         <option value="none" disabled>
-          {firstOptionSetter()}
+          {!noneOption ? "Add to..." : "Move to..."}
         </option>
         <option value="currentlyReading">Currently Reading</option>
         <option value="wantToRead">Want to Read</option>
         <option value="read">Read</option>
-        {noneOption}
+        {/* determine to show or not to show the last option none */}
+        {noneOption && <option value="none">None</option>}
       </select>
     </div>
   );
 };
 
+OptionsButton.propTypes = {
+  book: PropTypes.object.isRequired,
+  update: PropTypes.func.isRequired,
+};
 export default OptionsButton;

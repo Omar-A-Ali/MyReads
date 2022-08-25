@@ -2,6 +2,7 @@ import React from "react";
 import Shelfs from "./Shelfs";
 import Header from "./Header";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const ListBooks = ({ currentBooks, update }) => {
   return (
@@ -19,4 +20,8 @@ const ListBooks = ({ currentBooks, update }) => {
   );
 };
 
+ListBooks.propTypes = {
+  currentBooks: PropTypes.array.isRequired,
+  update: PropTypes.func.isRequired,
+};
 export default ListBooks;

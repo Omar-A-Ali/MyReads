@@ -1,5 +1,6 @@
 import React from "react";
 import Shelf from "./Shelf";
+import PropTypes from "prop-types";
 
 const Shelfs = ({ currentBooks, update }) => {
   const currentlyReading = currentBooks.filter(
@@ -26,4 +27,8 @@ const Shelfs = ({ currentBooks, update }) => {
   return <div>{listingShilfs()}</div>;
 };
 
+Shelfs.propTypes = {
+  currentBooks: PropTypes.array.isRequired,
+  update: PropTypes.func.isRequired,
+};
 export default Shelfs;

@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import * as BooksAPI from "../utils/BooksAPI";
 import Book from "./Book";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const SearchBooks = ({ currentBooks, update }) => {
   const [searchResults, setSearchResults] = useState([]);
@@ -75,6 +76,11 @@ const SearchBooks = ({ currentBooks, update }) => {
       )}
     </div>
   );
+};
+
+SearchBooks.propTypes = {
+  currentBooks: PropTypes.array.isRequired,
+  update: PropTypes.func.isRequired,
 };
 
 export default SearchBooks;

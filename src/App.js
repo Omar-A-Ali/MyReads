@@ -9,7 +9,7 @@ function App() {
   //array to hold current books
   const [currentBooks, setCurrentBooks] = useState([]);
 
-  //cheack if books has changed to update it "using it in use effect will cause leak of data"
+  //cheack if books has changed to update it, "using currentBooks in use effect will cause leak of data"
   const [booksChanged, setBooksChanged] = useState(false);
   const update = () => {
     setBooksChanged(!booksChanged);
@@ -21,6 +21,7 @@ function App() {
     setCurrentBooks(res);
   };
 
+  //getting books first time and will update if booksChanged has been changed "using update() in OptionButtons"
   useEffect(() => {
     getBooks();
   }, [booksChanged]);

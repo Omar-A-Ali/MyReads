@@ -1,5 +1,7 @@
 import React from "react";
 import OptionsButton from "./OptionsButton";
+import PropTypes from "prop-types";
+
 const Book = ({ book, update }) => {
   const style = {
     width: 128,
@@ -30,4 +32,8 @@ const Book = ({ book, update }) => {
   );
 };
 
+Book.propTypes = {
+  book: PropTypes.object.isRequired,
+  update: PropTypes.func.isRequired,
+};
 export default Book;

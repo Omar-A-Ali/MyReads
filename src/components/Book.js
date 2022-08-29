@@ -2,7 +2,7 @@ import React from "react";
 import OptionsButton from "./OptionsButton";
 import PropTypes from "prop-types";
 
-const Book = ({ book, update }) => {
+const Book = ({ book }) => {
   const style = {
     width: 128,
     height: 193,
@@ -24,7 +24,7 @@ const Book = ({ book, update }) => {
     <div className="book">
       <div className="book-top">
         <div className="book-cover" style={image()}></div>
-        <OptionsButton book={book} update={update} />
+        <OptionsButton book={book} />
       </div>
       <div className="book-title">{book.title}</div>
       <div className="book-authors">{authors()}</div>
@@ -34,6 +34,5 @@ const Book = ({ book, update }) => {
 
 Book.propTypes = {
   book: PropTypes.object.isRequired,
-  update: PropTypes.func.isRequired,
 };
 export default Book;

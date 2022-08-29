@@ -2,11 +2,9 @@ import React from "react";
 import Book from "./Book";
 import PropTypes from "prop-types";
 
-const Shelf = ({ shelf, books, update }) => {
+const Shelf = ({ shelf, books }) => {
   const listingShelf = () => {
-    return books.map((book) => (
-      <li key={book.id}>{<Book book={book} update={update} />}</li>
-    ));
+    return books.map((book) => <li key={book.id}>{<Book book={book} />}</li>);
   };
   return (
     <div className="bookshelf">
@@ -21,6 +19,5 @@ const Shelf = ({ shelf, books, update }) => {
 Shelf.propTypes = {
   shelf: PropTypes.string.isRequired,
   books: PropTypes.array.isRequired,
-  update: PropTypes.func.isRequired,
 };
 export default Shelf;

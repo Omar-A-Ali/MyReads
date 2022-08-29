@@ -2,8 +2,10 @@ import React from "react";
 import * as BooksAPI from "../utils/BooksAPI";
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
+import { useBooksUpdate } from "../contexts/BooksContext";
 
-const OptionsButton = ({ book, update }) => {
+const OptionsButton = ({ book }) => {
+  const update = useBooksUpdate();
   const [currentShelf, setCurrentShelf] = useState("");
 
   //this is a state to show or hide the none button based on if the book have shelf or not
@@ -50,6 +52,5 @@ const OptionsButton = ({ book, update }) => {
 
 OptionsButton.propTypes = {
   book: PropTypes.object.isRequired,
-  update: PropTypes.func.isRequired,
 };
 export default OptionsButton;

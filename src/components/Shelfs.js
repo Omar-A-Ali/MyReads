@@ -1,8 +1,9 @@
 import React from "react";
 import Shelf from "./Shelf";
-import PropTypes from "prop-types";
+import { useBooks } from "../contexts/BooksContext";
 
-const Shelfs = ({ currentBooks, update }) => {
+const Shelfs = () => {
+  const currentBooks = useBooks();
   const currentlyReading = currentBooks.filter(
     (b) => b.shelf === "currentlyReading"
   );
@@ -16,19 +17,10 @@ const Shelfs = ({ currentBooks, update }) => {
   ];
   const listingShilfs = () => {
     return shelfs.map((shelf) => (
-      <Shelf
-        key={shelf.id}
-        shelf={shelf.name}
-        books={shelf.books}
-        update={update}
-      />
+      <Shelf key={shelf.id} shelf={shelf.name} books={shelf.books} />
     ));
   };
   return <div>{listingShilfs()}</div>;
 };
 
-Shelfs.propTypes = {
-  currentBooks: PropTypes.array.isRequired,
-  update: PropTypes.func.isRequired,
-};
 export default Shelfs;

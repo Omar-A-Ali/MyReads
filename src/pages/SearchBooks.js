@@ -1,11 +1,12 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import * as BooksAPI from "../utils/BooksAPI";
-import Book from "./Book";
+import Book from "../components/Book";
 import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
+import { useBooks } from "../contexts/BooksContext";
 
-const SearchBooks = ({ currentBooks, update }) => {
+const SearchBooks = () => {
+  const currentBooks = useBooks();
   const [searchResults, setSearchResults] = useState([]);
   const [searchNotFound, setSeachNotFound] = useState(<></>);
   const [query, setQuery] = useState("");
@@ -42,9 +43,7 @@ const SearchBooks = ({ currentBooks, update }) => {
     );
     if (booksExist() && query) {
       return doubled.map((searchedBook) => (
-        <li key={searchedBook.id}>
-          {<Book book={searchedBook} update={update} />}
-        </li>
+        <li key={searchedBook.id}>{<Book book={searchedBook} />}</li>
       ));
     }
   };
@@ -76,11 +75,6 @@ const SearchBooks = ({ currentBooks, update }) => {
       )}
     </div>
   );
-};
-
-SearchBooks.propTypes = {
-  currentBooks: PropTypes.array.isRequired,
-  update: PropTypes.func.isRequired,
 };
 
 export default SearchBooks;

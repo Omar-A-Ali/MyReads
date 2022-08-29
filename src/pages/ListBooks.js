@@ -1,16 +1,15 @@
 import React from "react";
-import Shelfs from "./Shelfs";
-import Header from "./Header";
+import Shelfs from "../components/Shelfs";
+import Header from "../components/Header";
 import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
 
-const ListBooks = ({ currentBooks, update }) => {
+const ListBooks = () => {
   return (
     <div>
       <Header />
       <div className="list-books-content">
         <div>
-          <Shelfs currentBooks={currentBooks} update={update} />
+          <Shelfs />
         </div>
         <div className="open-search">
           <Link to="/search">Add a book</Link>
@@ -20,8 +19,4 @@ const ListBooks = ({ currentBooks, update }) => {
   );
 };
 
-ListBooks.propTypes = {
-  currentBooks: PropTypes.array.isRequired,
-  update: PropTypes.func.isRequired,
-};
 export default ListBooks;
